@@ -4,13 +4,46 @@ class Enigma
     @char_set = ("a" .. "z").to_a << " "
   end
 
-  def encrypt(message, key, date)
-    key = rand(99999).to_s.rjust(5, "0")
-    a_shift = key.slice(0..1).to_i
-    b_shift = key.slice(1..2).to_i
-    c_shift = key.slice(2..3).to_i
-    d_shift = key.slice(3..4).to_i
+  def encrypt(message, key = key_generator, date = today_date)
+    encryption = Hash.new(0)
+    offset = (date.to_i ** 2).to_s.slice(-4..-1).to_i #1025
+    message_array = message.split(//)
+    a_shift = key.slice(0..1).to_i #02
+    b_shift = key.slice(1..2).to_i #27
+    c_shift = key.slice(2..3).to_i #71
+    d_shift = key.slice(3..4).to_i #15
+    encrypted_message = []
 
-    require "pry"; binding.pry
+      message_array.each_with_index do |char, i|
+        if i % 4 == 0
+          encrypt_1 = @char_set.index(char) + (a_shift + offset[0]) #3
+            encrypted_message << @char_set[encrypt_1]
+        elsif i % 4 == 1
+          require "pry"; binding.pry
+          encrypt_2 = @char_set.index(char) + (b_shift + offset[1]) #27
+            encrypted_message << @char_set[encrypt_2]
+        elsif i % 4 == 2
+          encrypt_3 = @char_set.index(char) + (c_shift + offset[2]) #73
+            encrypted_message << @char_set[encrypt_3]
+        elsif i % 4 == 3
+          encrypt_4 = @char_set.index(char) + (d_shift + offset[3]) #20
+            encrypted_message << @char_set[encrypt_4]
+        end
+      end
+      require "pry"; binding.pry
+      encrypted_message
+      encypytion = {
+        message: message,
+        key: key,
+        date: date
+      }
+  end
+
+  def key_generator
+    key = rand(99999).to_s.rjust(5, "0")
+  end
+
+  def today_date
+    Date.today.strftime("%m%d%y")
   end
 end
