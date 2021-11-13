@@ -27,9 +27,9 @@ RSpec.describe Enigma do
     expect(@enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
   end
 
-  xit '#encrypt without argument' do
+  it '#encrypt without argument' do
 
-    expect(@enigma.encrypt("My name is Seth")).to eq(Hash)
+    expect(@enigma.encrypt("My name is Seth")).to be_an(Hash)
   end
 
   it 'can #decrypt' do
