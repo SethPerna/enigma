@@ -1,7 +1,7 @@
-require 'key_generator'
-require 'today_date'
-require 'encrypt'
-require 'decrypt'
+require './encrypt'
+require './decrypt'
+require './key_generator'
+require './today_date'
 class Enigma
   include Encrypt
   include Decrypt
