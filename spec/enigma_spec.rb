@@ -2,48 +2,47 @@ require 'date'
 require './lib/enigma'
 require 'spec_helper'
 RSpec.describe Enigma do
-  before :each do
-    @enigma = Enigma.new
-  end
+  let(:enigma) {Enigma.new}
+
   it 'exists' do
-    expect(@enigma).to be_an_instance_of(Enigma)
+    expect(enigma).to be_an_instance_of(Enigma)
   end
 
   it 'has #char_set' do
-    expect(@enigma.char_set.count).to eq(27)
+    expect(enigma.char_set.count).to eq(27)
   end
 
   it "has date" do
-    expect(@enigma.today_date).to eq("111421")
+    expect(enigma.today_date).to eq("111421")
   end
 
   it '#encrypt' do
     expected = {message: "keder ohulw", key: "02715", date: "040895"}
-    expect(@enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
+    expect(enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
   end
 
   it '#encrypt without argument' do
-    expect(@enigma.encrypt("My name is Seth")).to be_an(Hash)
+    expect(enigma.encrypt("My name is Seth")).to be_an(Hash)
   end
 
   it 'can #decrypt' do
     expected = {message: "hello world", key: "02715", date: "040895"}
-    expect(@enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
+    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
   end
 
   it '#encrypt with #today_date' do
     expected = {message: "qfllmyeh", key: "12345", date: "111421"}
-    expect(@enigma.encrypt("Whats up", "12345")).to eq(expected)
+    expect(enigma.encrypt("Whats up", "12345")).to eq(expected)
   end
 
   it '#decrypt with #today_date' do
-    @enigma.encrypt("Whats up", "12345")
+    enigma.encrypt("Whats up", "12345")
     expected = {message: "whats up", key: '12345', date: "111421"}
-    expect(@enigma.decrypt("djfi bze", "12345")).to eq(expected)
+    expect(enigma.decrypt("vp frhtb", "12345", "111421")).to eq(expected)
   end
 
   it '#encrypt with #today_date and #key_generator' do
     expected = {message: "jibberish", key: '12345', date: "111421"}
-    expect(@enigma.encrypt("hello world")).to eq(expected)
+    expect(enigma.encrypt("hello world")).to eq(expected)
   end
 end
