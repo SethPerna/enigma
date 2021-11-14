@@ -28,26 +28,22 @@ RSpec.describe Enigma do
 
   it 'can #decrypt' do
     expected = {message: "hello world", key: "02715", date: "040895"}
-
     expect(@enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
   end
 
   it '#encrypt with #today_date' do
     expected = {message: "mdlliweh", key: "12345", date: "111321"}
-
     expect(@enigma.encrypt("Whats up", "12345")).to eq(expected)
   end
 
   it '#decrypt with #today_date' do
     @enigma.encrypt("Whats up", "12345")
     expected = {message: "whats up", key: '12345', date: "111321"}
-
     expect(@enigma.decrypt("mdlliweh", "12345")).to eq(expected)
   end
 
   it '#encrypt with #today_date and #key_generator' do
     expected = {message: "jibberish", key: '12345', date: "111321"}
-
     expect(@enigma.encrypt("hello world")).to eq(expected)
   end
 end
