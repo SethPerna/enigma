@@ -14,18 +14,15 @@ RSpec.describe Enigma do
   end
 
   it "has date" do
-
     expect(@enigma.today_date).to eq("111321")
   end
 
   it '#encrypt' do
     expected = {message: "keder ohulw", key: "02715", date: "040895"}
-
     expect(@enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
   end
 
   it '#encrypt without argument' do
-
     expect(@enigma.encrypt("My name is Seth")).to be_an(Hash)
   end
 
