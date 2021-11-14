@@ -56,7 +56,4 @@ RSpec.describe Enigma do
 
     expect(@enigma.encrypt("hello world")).to eq(expected)
   end
-
-
-
 end
