@@ -2,12 +2,12 @@ module Decrypt
   def decrypt(message, key, date = today_date)
     decryption = Hash.new(0)
     offset = (date.to_i ** 2).to_s.slice(-4..-1).to_i
-    offset_2 = offset.to_s.split(//)#1025
+    offset_2 = offset.to_s.split(//)
     message_array = message.split(//)
-    a_shift = key.slice(0..1).to_i #02
-    b_shift = key.slice(1..2).to_i #27
-    c_shift = key.slice(2..3).to_i #71
-    d_shift = key.slice(3..4).to_i #15
+    a_shift = key.slice(0..1).to_i
+    b_shift = key.slice(1..2).to_i
+    c_shift = key.slice(2..3).to_i
+    d_shift = key.slice(3..4).to_i
     decrypted_message = []
     message_array.each_with_index do |char, i|
       char.downcase!
