@@ -21,7 +21,7 @@ module Decrypt
         encrypt_3 = @char_set.rotate((c_shift + offset_2[2].to_i) * -1)[@char_set.index(char)]
           decrypted_message << encrypt_3
       elsif i % 4 == 3
-        encrypt_4 = @char_set.rotate((d_shift + offset_2[3].to_i) * -1)[@char_set.index(char)] 
+        encrypt_4 = @char_set.rotate((d_shift + offset_2[3].to_i) * -1)[@char_set.index(char)]
           decrypted_message << encrypt_4
       end
     end
