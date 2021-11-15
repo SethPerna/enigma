@@ -46,6 +46,11 @@ RSpec.describe Enigma do
     expect(enigma.encrypt("hello world!", "02715", "040895")).to eq(expected)
   end
 
+  it '#decrypt and ignore special characters' do
+    expected = {message: "hello world!", key: "02715", date: "040895"}
+    expect(enigma.decrypt("keder ohulw!", "02715", "040895")).to eq(expected)
+  end
+
   xit '#encrypt with #today_date and #key_generator' do
     expected = {message: "jibberish", key: '12345', date: "111421"}
     expect(enigma.encrypt("hello world")).to eq(expected)

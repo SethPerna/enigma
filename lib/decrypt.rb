@@ -11,7 +11,9 @@ module Decrypt
     decrypted_message = []
     message_array.each_with_index do |char, i|
       char.downcase!
-      if i % 4 == 0
+      if !@char_set.include?(char) == true
+        decrypted_message << char
+      elsif i % 4 == 0
         encrypt_1 = @char_set.rotate((a_shift + offset_2[0].to_i) * -1)[@char_set.index(char)]
           decrypted_message << encrypt_1
       elsif i % 4 == 1
