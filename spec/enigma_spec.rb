@@ -13,7 +13,7 @@ RSpec.describe Enigma do
   end
 
   it "has date" do
-    expect(enigma.today_date).to eq("111521")
+    expect(enigma.today_date).to eq("111621")
   end
 
   it '#encrypt' do
@@ -31,14 +31,14 @@ RSpec.describe Enigma do
   end
 
   it '#encrypt with #today_date' do
-    expected = {message: "khllg eh", key: "12345", date: "111521"}
+    expected = {message: "ojllkbeh", key: "12345", date: "111621"}
     expect(enigma.encrypt("Whats up", "12345")).to eq(expected)
   end
 
   it '#decrypt with #today_date' do
     enigma.encrypt("Whats up", "12345")
-    expected = {message: "whats up", key: '12345', date: "111521"}
-    expect(enigma.decrypt("khllg eh", "12345", "111521")).to eq(expected)
+    expected = {message: "whats up", key: '12345', date: "111621"}
+    expect(enigma.decrypt("ojllkbeh", "12345", "111621")).to eq(expected)
   end
 
   it '#encrypt and ignore special characters' do
@@ -51,8 +51,8 @@ RSpec.describe Enigma do
     expect(enigma.decrypt("keder ohulw!", "02715", "040895")).to eq(expected)
   end
 
-  xit '#encrypt with #today_date and #key_generator' do
-    expected = {message: "jibberish", key: '12345', date: "111421"}
-    expect(enigma.encrypt("hello world")).to eq(expected)
+  it '#encrypt with #today_date and #key_generator' do
+    #expected = {message: "jibberish", key: '12345', date: "111421"}
+    expect(enigma.encrypt("hello world")).to be_an_instance_of(Hash)
   end
 end
