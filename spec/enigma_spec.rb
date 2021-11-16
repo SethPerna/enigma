@@ -52,7 +52,7 @@ RSpec.describe Enigma do
   end
 
   it '#encrypt with #today_date and #key_generator' do
-    #expected = {message: "jibberish", key: '12345', date: "111421"}
+
     expect(enigma.encrypt("hello world")).to be_an_instance_of(Hash)
   end
 end
